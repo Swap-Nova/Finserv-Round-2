@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
+import './Search.css';
 
 function Search() {
     const [nameList, setNameList] = useState([]);
@@ -37,36 +38,6 @@ function Search() {
         <div className="top-container">
             <h1>Employees List</h1>
             <input type="text" placeholder="Type to search" onChange={(e) => setSearch(e.target.value)} />
-        {/* eslint-disable-next-line array-callback-return */}
-        {nameList.filter((item) => {
-            if (search === "") {
-            return item;
-            }
-            else if (item.name && item.name.toLowerCase().includes(search.toLowerCase())) {
-            return item;
-            }
-            else if (item.designation && item.designation.toLowerCase().includes(search.toLowerCase())) {
-            return item;
-            }
-            return null;
-        })
-            .filter(filterEmployeesBySkills)
-            .map((item) => {
-            return (
-                <ul key={item.id}>
-                <p>{item.name}</p>
-                <p>{item.designation}</p>
-                <p>{item.skills}</p>
-                </ul>
-            );
-            })}
-
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
 
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -91,6 +62,37 @@ function Search() {
                 </Form>
                 </Dropdown.Menu>
             </Dropdown>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
+        {/* eslint-disable-next-line array-callback-return */}
+        {nameList.filter((item) => {
+            if (search === "") {
+            return item;
+            }
+            else if (item.name && item.name.toLowerCase().includes(search.toLowerCase())) {
+            return item;
+            }
+            else if (item.designation && item.designation.toLowerCase().includes(search.toLowerCase())) {
+            return item;
+            }
+            return null;
+        })
+            .filter(filterEmployeesBySkills)
+            .map((item) => {
+            return (
+                <ul key={item.id}>
+                <p>{item.name}</p>
+                <p>{item.designation}</p>
+                <p>{item.skills}</p>
+                </ul>
+            );
+            })}
+
         </div>
     );
 }
